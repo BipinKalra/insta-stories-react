@@ -8,6 +8,7 @@ import Carousel from "./components/Carousel";
 const App = () => {
   const [stories, setStories] = useState([]);
   const [active, setActive] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     requestStories();
@@ -21,10 +22,8 @@ const App = () => {
   }
 
   const generateVideoList = (stories) => {
-    return stories.map((story) => (
-      story.videoUrl
-    ))
-  }
+    return stories.map((story) => story.videoUrl);
+  };
 
   // const generateImageList = (stories) => {
   //   return stories.map((story) => (
@@ -34,25 +33,40 @@ const App = () => {
 
   return (
     <div className="ui">
-      <div className="stories">
-        { active ? (
-          ""
+      <div className="main-section">
+        {
+          active ? "" : (
+            <div className="stories">
+              {
+                stories.map((story) => (
+                  <Story
+                    thumbnail={story.thumbnailUrl}
+                    video={story.videoUrl}
+                    key={story.id}
+                    onClick={() => {
+                      setActive(true);
+                      setCurrentIndex(story.id - 1);
+                      console.log(currentIndex);
+                    }}
+                  />
+                ))
+              }
+            </div>
+          )
+        }
+        {active ? (
+          <>
+            <Carousel elementList={generateVideoList(stories)}></Carousel>
+            <button className="close-button" onClick={() => setActive(false)}>
+              Close
+            </button>
+          </>
         ) : (
-          stories.map((story) => (
-            <Story thumbnail = {story.thumbnailUrl} video = {story.videoUrl} key = {story.id} onClick = {() => setActive(true)}/>
-          ))
+          ""
         )}
       </div>
-      {
-        active ? (
-          <Carousel elementList = {generateVideoList(stories)}></Carousel>
-        ) : (
-          ""
-        )
-      }
-      <button className="close-button" onClick={() => setActive(false)}>Close</button>
     </div>
-  )
+  );
 };
 
 const container = document.getElementById("root");

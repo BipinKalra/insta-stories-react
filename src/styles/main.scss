@@ -14,14 +14,45 @@ body {
 }
 
 .ui {
-  width: 500px;
+  width: 100vw;
   height: 100vh;
-  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 0 2rem;
+  background-color: $primary-background;
 }
+
+.main-section {
+  background-color: $secondary-background;
+  overflow: hidden;
+  width: 60vh;
+}
+
+// .container {
+//   overflow-y: scroll;
+//   scrollbar-width: none; /* Firefox */
+//   -ms-overflow-style: none; /* Internet Explorer 10+ */
+// }
+// .container::-webkit-scrollbar {
+//   /* WebKit */
+//   width: 0;
+//   height: 0;
+// }
 
 .stories {
   display: flex;
-  overflow: auto;
+  overflow-y: hidden;
+  padding: 2rem 1rem;
+
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
 
 .story {
@@ -114,4 +145,11 @@ body {
   );
   transition: height 0.2s, width 0.2s;
   z-index: 10;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
 }
