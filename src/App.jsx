@@ -1,8 +1,8 @@
 import { createRoot } from "react-dom/client";
 import "./styles/main.scss";
 import { useState, useEffect } from "react";
-import Story from "./components/Story";
 import Carousel from "./components/Carousel";
+import StorySlider from "./components/StorySlider";
 
 const App = () => {
   const [stories, setStories] = useState([]);
@@ -29,23 +29,7 @@ const App = () => {
       <div className="main-section">
         {
           active ? "" : (
-            <div className="stories">
-              {
-                stories.map((story) => (
-                  <Story
-                    thumbnail={story.thumbnailUrl}
-                    video={story.videoUrl}
-                    key={story.id}
-                    currentKey={story.id}
-                    // currentIndexHook={currentIndexHook}
-                    onClick={() => {
-                      setActive(true);
-                      // console.log(currentIndexHook[0])
-                    }}
-                  />
-                ))
-              }
-            </div>
+            <StorySlider stories={stories} updateActiveState={setActive} />
           )
         }
         {active ? (
