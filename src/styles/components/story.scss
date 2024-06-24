@@ -1,0 +1,74 @@
+.stories {
+  display: flex;
+  overflow-y: hidden;
+  padding: 2rem 1rem;
+
+  overflow-x: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+.story {
+  position: relative;
+
+  &:first-child {
+    margin-right: 10px;
+  }
+
+  &:last-child {
+    margin-left: 10px;
+  }
+
+  &:not(:first-child):not(:last-child) {
+    margin: 0 10px;
+  }
+
+  &:hover {
+    .story-ring {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.story-ring {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: $primary-gradient;
+  transition: transform 0.5s;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 90px;
+    width: 90px;
+    background-color: $secondary-background;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+  }
+}
+
+.story-img {
+  width: 80px;
+  height: 80px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: margin-left 1s;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}

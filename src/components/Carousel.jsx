@@ -20,7 +20,7 @@ const Carousel = (props) => {
   }
 
   useEffect(() => {
-    intervalRef.current = setInterval(nextElement, 30000);
+    intervalRef.current = setInterval(nextElement, 10000);
 
     return () => {
       clearInterval(intervalRef.current);
@@ -34,7 +34,7 @@ const Carousel = (props) => {
         className="carousel"
         onMouseEnter={() => clearInterval(intervalRef.current)}
         onMouseLeave={() => {
-          intervalRef.current = setInterval(nextElement, 30000);
+          intervalRef.current = setInterval(nextElement, 10000);
         }}
       >
         {/* <img src={props.elementList[index]} alt="Thumbail" className="carousel-image" /> */}

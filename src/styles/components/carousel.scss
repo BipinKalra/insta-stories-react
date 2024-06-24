@@ -49,3 +49,16 @@
 .right-button {
   right: 0;
 }
+
+.close-button {
+  all: unset;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  transform: translateX(-50%);
+  z-index: 100;
+  font-size: 2rem;
+  font-weight: 400;
+  color: white;
+  cursor: pointer;
+}

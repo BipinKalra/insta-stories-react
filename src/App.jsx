@@ -2,13 +2,12 @@ import { createRoot } from "react-dom/client";
 import "./styles/main.scss";
 import { useState, useEffect } from "react";
 import Story from "./components/Story";
-// import StoryCarousel from "./components/StoryCarousel";
 import Carousel from "./components/Carousel";
 
 const App = () => {
   const [stories, setStories] = useState([]);
   const [active, setActive] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // const currentIndexHook = useState(0);
 
   useEffect(() => {
     requestStories();
@@ -25,12 +24,6 @@ const App = () => {
     return stories.map((story) => story.videoUrl);
   };
 
-  // const generateImageList = (stories) => {
-  //   return stories.map((story) => (
-  //     story.thumbnailUrl
-  //   ))
-  // }
-
   return (
     <div className="ui">
       <div className="main-section">
@@ -43,10 +36,11 @@ const App = () => {
                     thumbnail={story.thumbnailUrl}
                     video={story.videoUrl}
                     key={story.id}
+                    currentKey={story.id}
+                    // currentIndexHook={currentIndexHook}
                     onClick={() => {
                       setActive(true);
-                      setCurrentIndex(story.id - 1);
-                      console.log(currentIndex);
+                      // console.log(currentIndexHook[0])
                     }}
                   />
                 ))
@@ -58,7 +52,7 @@ const App = () => {
           <>
             <Carousel elementList={generateVideoList(stories)}></Carousel>
             <button className="close-button" onClick={() => setActive(false)}>
-              Close
+              &times;
             </button>
           </>
         ) : (
