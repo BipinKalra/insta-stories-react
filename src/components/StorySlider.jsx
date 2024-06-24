@@ -6,14 +6,10 @@ const StorySlider = ( props ) => {
       {
         props.stories.map((story) => (
           <Story
-            thumbnail={story.thumbnailUrl}
-            video={story.videoUrl}
+            thumbnail={story.profileUrl}
             key={story.id}
-            currentKey={story.id}
-            // currentIndexHook={currentIndexHook}
             onClick={() => {
-              props.updateActiveState(true);
-              // console.log(currentIndexHook[0])
+              props.onSelect(story);
             }}
           />
         ))
