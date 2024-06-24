@@ -5,22 +5,12 @@ import Carousel from "./components/Carousel";
 import StorySlider from "./components/StorySlider";
 
 const App = () => {
-  // const [stories, setStories] = useState([]);
   const [active, setActive] = useState(null);
   const [profiles, setProfiles] = useState([]);
-  // const currentIndexHook = useState(0);
 
   useEffect(() => {
-    // requestStories();
     requestProfiles();
   }, []);
-
-  // async function requestStories() {
-  //   const res = await fetch("http://localhost:3000/videos");
-  //   const json = await res.json();
-
-  //   setStories(json);
-  // }
 
   async function requestProfiles() {
     const res = await fetch("http://localhost:3000/profiles");
@@ -30,37 +20,28 @@ const App = () => {
   }
 
   const onEnd = useCallback(() => {
-    const idx = profiles.findIndex((value) => value.id == active.id)
-    if (idx >= profiles.length - 1) setActive(null)
-    else setActive(profiles[idx + 1])
-  }, [profiles, active])
+    const idx = profiles.findIndex((value) => value.id == active.id);
+    if (idx >= profiles.length - 1) setActive(null);
+    else setActive(profiles[idx + 1]);
+  }, [profiles, active]);
 
   const onStart = useCallback(() => {
-    const idx = profiles.findIndex((value) => value.id == active.id)
-    if (idx <= 0) setActive(null)
-    else setActive(profiles[idx - 1])
-  }, [profiles, active])
-
-  // const generateVideoList = (stories) => {
-  //   return stories.map((story) => story.videoUrl);
-  // };
+    const idx = profiles.findIndex((value) => value.id == active.id);
+    if (idx <= 0) setActive(null);
+    else setActive(profiles[idx - 1]);
+  }, [profiles, active]);
 
   return (
     <div className="ui">
       <div className="main-section">
-        {
-          active ? "" : (
-            <StorySlider stories={profiles} onSelect={setActive} />
-          )
-        }
+        {active ? "" : <StorySlider stories={profiles} onSelect={setActive} />}
         {active ? (
           <>
-            <Carousel 
+            <Carousel
               profile={active}
               onStart={onStart}
               onEnd={onEnd}
-            >
-            </Carousel>
+            ></Carousel>
             <button className="close-button" onClick={() => setActive(null)}>
               &times;
             </button>
