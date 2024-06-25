@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "server": "json-server --watch src/data/db.json",
     "start": "concurrently \"npm run server\" \"npm run dev\""
   },
@@ -17,7 +18,10 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@vitejs/plugin-react": "^2.1.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^14.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^1.6.0",
     "concurrently": "^8.2.2",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
@@ -25,10 +29,12 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^24.0.0",
     "json-server": "^1.0.0-beta.1",
     "prettier": "^2.7.1",
     "sass": "^1.77.6",
-    "vite": "^3.1.4"
+    "vite": "^5.3.1",
+    "vitest": "^1.6.0"
   },
   "dependencies": {
     "react": "^18.2.0",
